@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRAVE FOOTWEAR - Premium Footwear Collection</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        crave: {
+                            white: '#FFFFFF',
+                            cream: '#FDFBF7',
+                            creamDark: '#F4EFE6',
+                            grayLight: '#F3F4F6',
+                            gray: '#E5E7EB',
+                            dark: '#111111',
+                            accent: '#D4AF37'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Smooth Custom Styling */
+        body {
+            background-color: #FDFBF7;
+            color: #111111;
+            overflow-x: hidden;
+        }
+
+        /* Floating Animation for Main Shoe */
+        @keyframes floatShoe {
+            0%, 100% { transform: translateY(0px) rotate(-15deg); filter: drop-shadow(0 25px 25px rgba(0,0,0,0.15)); }
+            50% { transform: translateY(-15deg) rotate(-12deg); filter: drop-shadow(0 35px 30px rgba(0,0,0,0.25)); }
+        }
+
+        .animate-float {
+            animation: floatShoe 5s ease-in-out infinite;
+        }
+
+        /* Smooth tab transition */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D1D5DB;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9CA3AF;
+        }
+        /* Styling untuk Tab Kategori */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .cat-btn {
+            background-color: #f3f3f3;
+            border: none;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cat-btn:hover {
+            background-color: #e2e2e2;
+            color: #111;
+        }
+
+        .cat-btn.active {
+            background-color: #111;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-900 flex flex-col min-h-screen">
+
+    <!-- Top Security & Announcement Bar -->
+    <div class="bg-crave-dark text-white text-xs py-2 px-4 text-center flex justify-between items-center sm:px-8">
+        <div class="flex items-center space-x-2">
+            <span class="inline-flex items-center text-green-400 font-semibold">
+                <i class="fas fa-lock mr-1.5"></i> HTTPS SECURED
+            </span>
+            <span class="hidden md:inline text-gray-400">| Toko Resmi Terverifikasi (NIB: 9120401823910)</span>
+        </div>
+        <div class="text-gray-300 font-medium">
+            🔥 Gratis Ongkir Seluruh Indonesia Min. Rp 500.000
+        </div>
+        <div class="hidden sm:flex items-center space-x-3 text-gray-300">
+            <a href="tel:085832670247" class="hover:text-white transition"><i class="fas fa-phone mr-1"></i> 085832670247</a>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-crave-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="#" class="flex items-center space-x-2">
+                    <span class="font-display font-black text-2xl tracking-tighter text-crave-dark uppercase">
+                        CRAVE<span class="text-gray-400 font-light">FOOTWEAR</span>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide uppercase">
+                <a href="#hero" class="text-crave-dark hover:text-gray-500 transition py-1 border-b-2 border-crave-dark">Home</a>
+                <a href="#products-section" class="text-gray-600 hover:text-crave-dark transition py-1 border-b-2 border-transparent">Koleksi</a>
+                <a href="javascript:void(0)" onclick="openModal('modal-about')" class="text-gray-600 hover:text-crave-dark transition py-1 border-b-2 border-transparent">Tentang Kami</a>
+                <a href="javascript:void(0)" onclick="openModal('modal-contact')" class="text-gray-600 hover:text-crave-dark transition py-1 border-b-2 border-transparent">Kontak</a>
+                <a href="javascript:void(0)" onclick="openModal('modal-policies')" class="text-gray-600 hover:text-crave-dark transition py-1 border-b-2 border-transparent">Kebijakan Toko</a>
+            </nav>
+
+            <!-- Search & Actions -->
+            <div class="flex items-center space-x-5">
+                <div class="relative hidden sm:block">
+                    <input type="text" placeholder="Cari sepatu..." class="bg-crave-grayLight text-xs rounded-full py-2 pl-4 pr-9 focus:outline-none focus:ring-2 focus:ring-crave-dark w-40 md:w-52 transition-all">
+                    <i class="fas fa-search absolute right-3 top-2.5 text-gray-400 text-xs"></i>
+                </div>
+
+                <!-- Cart Icon Button -->
+                <button onclick="toggleCartDrawer()" class="relative p-2 text-crave-dark hover:text-gray-600 transition focus:outline-none">
+                    <i class="fas fa-shopping-bag text-xl"></i>
+                    <span id="cart-badge" class="absolute top-0 right-0 bg-black text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center transform translate-x-1 -translate-y-1">0</span>
+                </button>
+
+                <!-- Mobile menu toggle -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-crave-dark focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-crave-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-crave-dark border-b border-gray-100">Home</a>
+            <a href="#products-section" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-gray-600 border-b border-gray-100">Koleksi Sepatu</a>
+            <a href="javascript:void(0)" onclick="toggleMobileMenu(); openModal('modal-about')" class="block py-2 text-sm font-semibold text-gray-600 border-b border-gray-100">Tentang Kami</a>
+            <a href="javascript:void(0)" onclick="toggleMobileMenu(); openModal('modal-contact')" class="block py-2 text-sm font-semibold text-gray-600 border-b border-gray-100">Kontak</a>
+            <a href="javascript:void(0)" onclick="toggleMobileMenu(); openModal('modal-policies')" class="block py-2 text-sm font-semibold text-gray-600">Kebijakan & Privasi</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        
+        <!-- HERO SECTION (Inspired by Nike Reference Image) -->
+        <section id="hero" class="relative min-h-[calc(100vh-5rem)] bg-gradient-to-b from-crave-cream to-crave-creamDark overflow-hidden flex flex-col justify-between py-8">
+            
+            <!-- Large Background Typography -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
+                <h1 id="bg-brand-text" class="font-display font-black text-[14vw] leading-none text-gray-300/40 tracking-tighter uppercase transition-all duration-700">
+                    CRAVE
+                </h1>
+            </div>
+
+            <!-- Top Hero Area: Brand Slogan & Main Display -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto">
+                
+                <!-- Left Column: Slogan & Details -->
+                <div class="lg:col-span-4 text-center lg:text-left space-y-4">
+                    <span id="hero-tagline" class="inline-block text-xs uppercase font-bold tracking-widest text-gray-500 bg-white/80 px-3 py-1 rounded-full border border-gray-200 shadow-sm">
+                        PREMIUM SNEAKERS SERIES
+                    </span>
+                    <h2 id="hero-title" class="font-display font-black text-4xl sm:text-6xl text-crave-dark leading-tight uppercase tracking-tight">
+                        CRAVE AIR MAX
+                    </h2>
+                    <p id="hero-desc" class="text-sm text-gray-600 max-w-md mx-auto lg:mx-0 leading-relaxed">
+                        Desain futuristik dengan bantalan udara ganda untuk kenyamanan maksimal sepanjang hari. Bahan breathable mesh berkualitas tinggi.
+                    </p>
+                    
+                    <!-- Size Selector -->
+                    <div class="pt-2">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Pilih Ukuran (EU):</label>
+                        <div id="size-selector" class="flex justify-center lg:justify-start space-x-2">
+                            <button onclick="selectSize(39)" class="size-btn w-10 h-10 rounded-lg border border-gray-300 text-xs font-bold hover:border-crave-dark transition">39</button>
+                            <button onclick="selectSize(40)" class="size-btn w-10 h-10 rounded-lg border border-gray-300 text-xs font-bold hover:border-crave-dark transition">40</button>
+                            <button onclick="selectSize(41)" class="size-btn w-10 h-10 rounded-lg border border-crave-dark bg-crave-dark text-white text-xs font-bold transition">41</button>
+                            <button onclick="selectSize(42)" class="size-btn w-10 h-10 rounded-lg border border-gray-300 text-xs font-bold hover:border-crave-dark transition">42</button>
+                            <button onclick="selectSize(43)" class="size-btn w-10 h-10 rounded-lg border border-gray-300 text-xs font-bold hover:border-crave-dark transition">43</button>
+                        </div>
+                    </div>
+
+                    <!-- Price & Buy Button -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <div>
+                            <span class="text-xs text-gray-400 uppercase font-semibold block">Harga Spesial</span>
+                            <span id="hero-price" class="font-display font-bold text-3xl text-crave-dark">Rp 1.499.000</span>
+                        </div>
+                        <button onclick="addCurrentHeroToCart()" class="w-full sm:w-auto bg-crave-dark text-white px-8 py-3.5 rounded-full font-bold text-sm tracking-wide uppercase hover:bg-gray-800 transition shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 group">
+                            <i class="fas fa-shopping-bag text-xs group-hover:scale-110 transition"></i>
+                            <span>Tambah ke Keranjang</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Center/Right Column: Main Interactive Floating Shoe -->
+                <div class="lg:col-span-8 flex flex-col items-center justify-center relative py-6">
+                    <!-- Dynamic Glowing Shadow Base -->
+                    <div class="relative w-full max-w-lg aspect-square flex items-center justify-center">
+                        <div class="absolute bottom-10 w-3/4 h-12 bg-black/15 rounded-full blur-xl transform scale-y-50"></div>
+                        
+                        <!-- Main Shoe Image with Smooth Animation -->
+                        <img id="hero-shoe-img" 
+                             src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=80" 
+                             alt="Crave Shoe Display" 
+                             class="w-full max-w-xl object-contain animate-float transition-all duration-500 cursor-pointer drop-shadow-2xl"
+                             title="Klik untuk Zoom" onclick="openShoeModal()">
+                    </div>
+                    
+                    <!-- Small instruction badge -->
+                    <span class="text-[11px] text-gray-400 font-medium mt-2 flex items-center space-x-1">
+                        <i class="fas fa-mouse-pointer text-xs"></i>
+                        <span>Pilih varian di bawah untuk melihat detail model lain</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Bottom Carousel / Product Thumbnails Slider (Inspired by reference) -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 pt-4">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="thumbnail-container">
+                    <!-- Dynamic Product Thumbnails will be rendered here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TRUST BADGES SECTION (Memenuhi 8/10 Elemen Toko Dipercaya) -->
+        <section class="bg-white py-10 border-y border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    
+                    <div class="p-4 rounded-xl bg-crave-cream/50 border border-gray-100 flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center text-lg mb-3">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-crave-dark">Legalitas Resmi</h4>
+                        <p class="text-xs text-gray-500 mt-1">NIB: 9120401823910 (Terdaftar)</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-crave-cream/50 border border-gray-100 flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center text-lg mb-3">
+                            <i class="fas fa-undo-alt"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-crave-dark">7 Hari Garansi Retur</h4>
+                        <p class="text-xs text-gray-500 mt-1">Tukar ukuran / cacat pabrik</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-crave-cream/50 border border-gray-100 flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center text-lg mb-3">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-crave-dark">Pembayaran Aman</h4>
+                        <p class="text-xs text-gray-500 mt-1">Enkripsi HTTPS 256-Bit</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-crave-cream/50 border border-gray-100 flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center text-lg mb-3">
+                            <i class="fas fa-truck-fast"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-crave-dark">Kurir Terpercaya</h4>
+                        <p class="text-xs text-gray-500 mt-1">JNE, SiCepat, & J&T Express</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FULL PRODUCTS CATALOG GRID SECTION -->
+        <section id="products-section" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Koleksi Lengkap</span>
+                    <h2 class="font-display font-black text-3xl sm:text-4xl text-crave-dark uppercase tracking-tight">Katalog Produk</h2>
+                </div>
+                <div class="category-tabs">
+                    <button class="cat-btn active" onclick="filterCategory('all', this)">SEMUA PRODUK</button>
+                    
+                    
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Products rendered via JS -->
+            </div>
+        </section>
+
+        <!-- CUSTOMER REVIEWS / TESTIMONIALS SECTION -->
+        <section class="bg-crave-cream py-16 border-t border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Ulasan Pembeli</span>
+                    <h2 class="font-display font-black text-3xl text-crave-dark uppercase mt-1">Apa Kata Mereka?</h2>
+                    <p class="text-sm text-gray-600 mt-2">Ribuan pelanggan telah merasakan kenyamanan sepatu CRAVE Footwear.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Review 1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 text-xs mb-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-sm text-gray-700 italic">"Kualitas bahan dan jahitan sangat rapi untuk harga segini. Solnya empuk sekali dipakai lari pagi di Salatiga. Pengiriman super cepat!"</p>
+                        </div>
+                        <div class="mt-6 flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-full bg-crave-dark text-white font-bold flex items-center justify-center text-xs">
+                                B
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-bold text-crave-dark">Budi Santoso</h5>
+                                <span class="text-[10px] text-gray-400">Pembeli Terverifikasi • Jakarta</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 text-xs mb-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-sm text-gray-700 italic">"Desain minimalis dengan kombinasi warna cream & abu-abu sangat sesuai selera saya. Pas banget di kaki dan tampilannya estetik."</p>
+                        </div>
+                        <div class="mt-6 flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-full bg-crave-dark text-white font-bold flex items-center justify-center text-xs">
+                                S
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-bold text-crave-dark">Siti Rahmawati</h5>
+                                <span class="text-[10px] text-gray-400">Pembeli Terverifikasi • Bandung</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 text-xs mb-3">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-sm text-gray-700 italic">"CS nya ramah banget waktu tanya ukuran via WhatsApp (085832670247). Kebijakan returnya juga jelas. Sangat terpercaya!"</p>
+                        </div>
+                        <div class="mt-6 flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-full bg-crave-dark text-white font-bold flex items-center justify-center text-xs">
+                                R
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-bold text-crave-dark">Rian Hidayat</h5>
+                                <span class="text-[10px] text-gray-400">Pembeli Terverifikasi • Surabaya</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-crave-dark text-white pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-gray-800">
+                
+                <!-- Brand Info -->
+                <div class="space-y-4">
+                    <span class="font-display font-black text-2xl tracking-tighter uppercase text-white">
+                        CRAVE<span class="text-gray-500">FOOTWEAR</span>
+                    </span>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Brand sepatu lokal premium berfokus pada kenyamanan, estetika modern, dan ketahanan material terbaik untuk melangkah lebih jauh.
+                    </p>
+                    <div class="text-xs text-gray-400">
+                        <p class="font-semibold text-white">NIB: 9120401823910</p>
+                        <p>Izin Usaha Perdagangan Sepatu Eceran</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-gray-200">Menu Navigasi</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#hero" class="hover:text-white transition">Home / Beranda</a></li>
+                        <li><a href="#products-section" class="hover:text-white transition">Koleksi Sepatu</a></li>
+                        <li><a href="javascript:void(0)" onclick="openModal('modal-about')" class="hover:text-white transition">Tentang Kami</a></li>
+                        <li><a href="javascript:void(0)" onclick="openModal('modal-contact')" class="hover:text-white transition">Kontak Resmi</a></li>
+                    </ul>
+                </div>
+
+                <!-- Policies Links -->
+                <div>
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-gray-200">Kebijakan Toko</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="javascript:void(0)" onclick="openModal('modal-policies')" class="hover:text-white transition">Pengiriman & Kurir</a></li>
+                        <li><a href="javascript:void(0)" onclick="openModal('modal-policies')" class="hover:text-white transition">Retur & Refund</a></li>
+                        <li><a href="javascript:void(0)" onclick="openModal('modal-policies')" class="hover:text-white transition">Kebijakan Privasi</a></li>
+                        <li><a href="javascript:void(0)" onclick="openModal('modal-policies')" class="hover:text-white transition">Metode Pembayaran</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social & Contact -->
+                <div>
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-gray-200">Hubungi Kami</h4>
+                    <ul class="space-y-2 text-xs text-gray-400 mb-4">
+                        <li><i class="fas fa-phone mr-2"></i> 085832670247</li>
+                        <li><i class="fas fa-envelope mr-2"></i> support@cravefootwear.id</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Salatiga, Jawa Tengah, Indonesia</li>
+                    </ul>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-xs hover:bg-white hover:text-black transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-xs hover:bg-white hover:text-black transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-xs hover:bg-white hover:text-black transition"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-xs hover:bg-white hover:text-black transition"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500">
+                <p>&copy; 2026 CRAVE FOOTWEAR. All rights reserved.</p>
+                <div class="flex items-center space-x-2 mt-2 sm:mt-0">
+                    <span class="inline-block w-2 h-2 rounded-full bg-green-500"></span>
+                    <span>HTTPS Secured Connection</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART DRAWER MODAL -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
+        <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <div class="pointer-events-auto w-screen max-w-md bg-white shadow-xl flex flex-col justify-between">
+                
+                <!-- Cart Header -->
+                <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+                    <h3 class="font-display font-bold text-lg uppercase tracking-wider text-crave-dark">Keranjang Belanja</h3>
+                    <button onclick="toggleCartDrawer()" class="text-gray-400 hover:text-crave-dark p-2">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Items List -->
+                <div id="cart-items-container" class="p-6 flex-grow overflow-y-auto divide-y divide-gray-100">
+                    <!-- Items rendered dynamically via JS -->
+                </div>
+
+                <!-- Cart Footer / Total -->
+                <div class="p-6 bg-crave-cream border-t border-gray-200 space-y-4">
+                    <div class="flex justify-between text-sm font-semibold">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>Estimasi Ongkir</span>
+                        <span class="text-green-600 font-semibold">GRATIS</span>
+                    </div>
+                    <div class="pt-2 border-t border-gray-300 flex justify-between text-base font-bold text-crave-dark">
+                        <span>Total Pembayaran</span>
+                        <span id="cart-total">Rp 0</span>
+                    </div>
+                    <button onclick="openCheckoutModal()" class="w-full bg-crave-dark text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-gray-800 transition">
+                        Lanjut ke Pembayaran
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ABOUT US (TENTANG KAMI) -->
+    <div id="modal-about" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('modal-about')" class="absolute top-4 right-4 text-gray-400 hover:text-black">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Identitas Toko</span>
+            <h2 class="font-display font-black text-2xl text-crave-dark uppercase mb-4">Tentang CRAVE FOOTWEAR</h2>
+            
+            <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
+                <p>
+                    <strong>CRAVE FOOTWEAR</strong> adalah brand alas kaki independen yang didirikan di Salatiga, Jawa Tengah. Kami mengusung filosofi desain minimalis dengan estetika modern yang menggabungkan kenyamanan maksimal dan ketahanan material terbaik.
+                </p>
+                <div class="bg-crave-cream p-4 rounded-xl border border-gray-200">
+                    <h4 class="font-bold text-crave-dark text-xs uppercase mb-2">Legalitas Resmi Usaha (NIB)</h4>
+                    <p class="text-xs">Nomor Induk Berusaha: <strong>9120401823910</strong></p>
+                    <p class="text-xs">KBLI: 47721 (Perdagangan Eceran Sepatu Dalam Negeri)</p>
+                    <p class="text-xs">Status: Terdaftar & Terverifikasi Aktif</p>
+                </div>
+                <p>
+                    Setiap pasang sepatu CRAVE diproduksi melalui kontrol kualitas ketat untuk memastikan setiap langkah Anda terasa ringan, bergaya, dan tahan lama.
+                </p>
+            </div>
+            
+            <div class="mt-6 pt-4 border-t border-gray-100 flex justify-end">
+                <button onclick="closeModal('modal-about')" class="bg-crave-dark text-white px-6 py-2 rounded-lg text-xs font-bold uppercase">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CONTACT (KONTAK) -->
+    <div id="modal-contact" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('modal-contact')" class="absolute top-4 right-4 text-gray-400 hover:text-black">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Hubungi Customer Service</span>
+            <h2 class="font-display font-black text-2xl text-crave-dark uppercase mb-4">Kontak Resmi</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <div class="bg-crave-cream p-4 rounded-xl border border-gray-200">
+                    <i class="fas fa-phone-alt text-xl text-crave-dark mb-2"></i>
+                    <h4 class="font-bold text-xs uppercase text-gray-500">Telepon / WhatsApp</h4>
+                    <p class="text-sm font-bold text-crave-dark mt-1">085832670247</p>
+                </div>
+                <div class="bg-crave-cream p-4 rounded-xl border border-gray-200">
+                    <i class="fas fa-envelope text-xl text-crave-dark mb-2"></i>
+                    <h4 class="font-bold text-xs uppercase text-gray-500">Email Respon Cepat</h4>
+                    <p class="text-sm font-bold text-crave-dark mt-1">support@cravefootwear.id</p>
+                </div>
+            </div>
+
+            <!-- Form pesan -->
+            <form onsubmit="handleContactSubmit(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Nama Lengkap</label>
+                    <input type="text" required class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-crave-dark outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Pesan Anda</label>
+                    <textarea rows="3" required class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-crave-dark outline-none" placeholder="Tuliskan pertanyaan atau kendala Anda..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-crave-dark text-white py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-gray-800 transition">Kirim Pesan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL POLICIES (KEBIJAKAN TOKO) -->
+    <div id="modal-policies" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-2xl max-w-3xl w-full p-6 sm:p-8 relative max-h-[90vh] flex flex-col">
+            <button onclick="closeModal('modal-policies')" class="absolute top-4 right-4 text-gray-400 hover:text-black">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Informasi Transparansi</span>
+            <h2 class="font-display font-black text-2xl text-crave-dark uppercase mb-4">Kebijakan Toko</h2>
+            
+            <!-- Policy Tabs Header -->
+            <div class="flex border-b border-gray-200 overflow-x-auto space-x-4 mb-4">
+                <button onclick="switchPolicyTab('shipping')" id="tab-btn-shipping" class="policy-tab-btn font-bold text-xs uppercase py-2 border-b-2 border-crave-dark text-crave-dark whitespace-nowrap">Pengiriman</button>
+                <button onclick="switchPolicyTab('return')" id="tab-btn-return" class="policy-tab-btn font-bold text-xs uppercase py-2 border-b-2 border-transparent text-gray-400 hover:text-crave-dark whitespace-nowrap">Retur & Refund</button>
+                <button onclick="switchPolicyTab('privacy')" id="tab-btn-privacy" class="policy-tab-btn font-bold text-xs uppercase py-2 border-b-2 border-transparent text-gray-400 hover:text-crave-dark whitespace-nowrap">Privasi</button>
+                <button onclick="switchPolicyTab('payment')" id="tab-btn-payment" class="policy-tab-btn font-bold text-xs uppercase py-2 border-b-2 border-transparent text-gray-400 hover:text-crave-dark whitespace-nowrap">Pembayaran</button>
+            </div>
+
+            <!-- Policy Tab Contents -->
+            <div class="overflow-y-auto flex-grow text-sm text-gray-600 space-y-3 leading-relaxed pr-2">
+                
+                <!-- Shipping -->
+                <div id="policy-shipping" class="tab-content active space-y-3">
+                    <h4 class="font-bold text-crave-dark">Ketentuan Pengiriman Kurir:</h4>
+                    <p>1. Pesanan diproses dan dikirim dalam 1x24 jam kerja dari gudang kami di Salatiga, Jawa Tengah.</p>
+                    <p>2. Mitra kurir terhubung: JNE, SiCepat, dan J&T Express.</p>
+                    <p>3. Nomor Resi otomatis dikirimkan melalui WhatsApp / Email setelah paket diserahkan ke pihak ekspedisi.</p>
+                </div>
+
+                <!-- Return & Refund -->
+                <div id="policy-return" class="tab-content space-y-3">
+                    <h4 class="font-bold text-crave-dark">Garansi 7 Hari Retur / Tukar Size:</h4>
+                    <p>1. Pembeli berhak mengajukan tukar ukuran (size) dalam kurun waktu 7 hari setelah barang diterima.</p>
+                    <p>2. Sepatu belum pernah dipakai beraktivitas di luar rumah dan tag label masih terpasang utuh.</p>
+                    <p>3. Pengembalian dana (refund) berlaku jika terdapat cacat produksi berat dengan melampirkan video unboxing utuh.</p>
+                </div>
+
+                <!-- Privacy -->
+                <div id="policy-privacy" class="tab-content space-y-3">
+                    <h4 class="font-bold text-crave-dark">Kebijakan Kerahasiaan Data:</h4>
+                    <p>1. Data pribadi Anda (Nama, Alamat, Telepon) hanya digunakan untuk keperluan pengiriman pesanan CRAVE FOOTWEAR.</p>
+                    <p>2. Kami tidak pernah menjual atau membagikan data konsumen kepada pihak ketiga manapun.</p>
+                    <p>3. Transaksi dilindungi oleh SSL 256-bit encryption (HTTPS).</p>
+                </div>
+
+                <!-- Payment -->
+                <div id="policy-payment" class="tab-content space-y-3">
+                    <h4 class="font-bold text-crave-dark">Metode Pembayaran Resmi:</h4>
+                    <p>1. Transfer Bank Otomatis: BCA (8290123910) a/n CRAVE FOOTWEAR.</p>
+                    <p>2. E-Wallet / QRIS: ShopeePay, GoPay, OVO, Dana.</p>
+                    <p>3. Verifikasi pembayaran dilakukan secara otomatis dalam sistem.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL SIMULATION -->
+    <div id="modal-checkout" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('modal-checkout')" class="absolute top-4 right-4 text-gray-400 hover:text-black">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Checkout Simulasi</span>
+            <h2 class="font-display font-black text-2xl text-crave-dark uppercase mb-4">Formulir Pesanan</h2>
+            
+            <form onsubmit="handleCheckoutSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Nama Penerima</label>
+                    <input type="text" required placeholder="Contoh: Budi Santoso" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-crave-dark outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Nomor WhatsApp</label>
+                    <input type="tel" required placeholder="Contoh: 085832670247" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-crave-dark outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Alamat Lengkap Pengiriman</label>
+                    <textarea rows="2" required placeholder="Jl. Diponegoro No. 12, Salatiga, Jawa Tengah" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-crave-dark outline-none"></textarea>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Pilih Kurir</label>
+                        <select class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-crave-dark outline-none font-semibold">
+                            <option>JNE Express (Gratis)</option>
+                            <option>SiCepat REG (Gratis)</option>
+                            <option>J&T Express (Gratis)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Pembayaran</label>
+                        <select class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-crave-dark outline-none font-semibold">
+                            <option>Transfer Bank BCA</option>
+                            <option>QRIS All Payment</option>
+                            <option>Mandiri Virtual Account</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bg-crave-cream p-3 rounded-lg border border-gray-200 flex justify-between items-center text-xs">
+                    <span class="font-semibold text-gray-600">Total Yang Harus Dibayar:</span>
+                    <span id="checkout-total-price" class="font-bold text-sm text-crave-dark">Rp 0</span>
+                </div>
+
+                <button type="submit" class="w-full bg-crave-dark text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-gray-800 transition">
+                    Konfirmasi & Bayar Sekarang
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-crave-dark text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 transform translate-y-20 opacity-0 transition-all duration-300">
+        <i class="fas fa-check-circle text-green-400"></i>
+        <span id="toast-message" class="text-xs font-bold">Produk berhasil ditambahkan!</span>
+    </div>
+
+<!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* 
+        ==========================================================================
+        DATA PRODUK CRAVE FOOTWEAR
+        ==========================================================================
+        */
+        const PRODUCTS_DATA = [
+            {
+                id: 1,
+                name: "CRAVE AIR MAX PRE-DAY",
+                tagline: "PREMIUM SNEAKERS SERIES",
+                price: 180000,
+                priceFormatted: "Rp 180.000",
+                bgText: "AIR MAX",
+                image: "https://media.discordapp.net/attachments/1565385641338867777/1568628678248894524/sepatu2.jpeg?ex=6af082cc&is=6aef314c&hm=172f48051d6160f687352c7e6f0e68c3d2f1336b45d30b379ab6cfa2fcc8a11d&=&format=webp&width=454&height=768",
+                description: "Siluet retro-modern dengan bantalan udara penuh. Memberikan gaya maksimal dan performa lari tanpa beban.",
+                category: "Casual"
+            },
+            {
+                id: 2,
+                name: "CRAVE RETRO HUARACHE",
+                tagline: "URBAN LIFESTYLE EDITION",
+                price: 170000,
+                priceFormatted: "Rp 170.000",
+                bgText: "HUARACHE",
+                image: "https://media.discordapp.net/attachments/1565385641338867777/1568628679146217513/sepatu1.jpeg?ex=6af082cc&is=6aef314c&hm=d74786ecfe2ff3a4a83eac8cd04e81e967b074091683433f177f2005fc099b51&=&format=webp&width=452&height=768",
+                description: "Material suede premium dipadukan dengan aksen warna marun yang elegan untuk penggunaan harian.",
+                category: "Casual"
+            },
+            {
+                id: 3,
+                name: "CRAVE ZOOM VOMERO 5",
+                tagline: "PRO ATHLETIC PERFORMANCE",
+                price: 190000,
+                priceFormatted: "Rp 190.000",
+                bgText: "VOMERO",
+                image: "https://media.discordapp.net/attachments/1565385641338867777/1568637903771406496/sepatu4.jpeg?ex=6af08b64&is=6aef39e4&hm=d51e32de6dd85495014cce4fba2e7dcf4fbda8dfce1fac10fddcdd2e53bad003&=&format=webp",
+                description: "Nuansa abu-abu minimalis dan futuristik. Cocok untuk lari jarak jauh maupun padu padan street style.",
+                category: "Casual"
+            },
+            {
+                id: 4,
+                name: "CRAVE ONE TAKE STEALTH",
+                tagline: "MONOCHROME STREETWEAR",
+                price: 200000,
+                priceFormatted: "Rp 200.000",
+                bgText: "STEALTH",
+                image: "https://media.discordapp.net/attachments/1565385641338867777/1568628677653041422/sepatu3.jpeg?ex=6af082cc&is=6aef314c&hm=96e415f131810ee641f40cd207651ee24c05e5599d928d9d27e4eaa21b233b21&=&format=webp&width=449&height=768",
+                description: "Kombinasi warna hitam dan putih yang kontras. Ringan, kokoh, dan anti-slip di segala jenis permukaan.",
+                category: "Casual"
+            }
+        ];
+
+        // State Management
+        let currentHeroProduct = PRODUCTS_DATA[0];
+        let selectedSize = 41;
+        let cart = [];
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            renderHeroThumbnails();
+            renderProductGrid(PRODUCTS_DATA);
+            updateHeroDisplay(0);
+        });
+
+        // FILTER CATEGORY FUNCTION
+        function filterCategory(category, element) {
+            // Highlight active button
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if(element) element.classList.add('active');
+
+            // Filter logic
+            let filteredProducts = PRODUCTS_DATA;
+            if (category.toLowerCase() !== 'all') {
+                filteredProducts = PRODUCTS_DATA.filter(product => product.category.toLowerCase() === category.toLowerCase());
+            }
+
+            // Render updated grid
+            renderProductGrid(filteredProducts);
+        }
+
+        // CATALOG GRID RENDER (Desain Asli Tailwind)
+        function renderProductGrid(productsToRender = PRODUCTS_DATA) {
+            const grid = document.getElementById('product-grid');
+            if (!grid) return;
+
+            if (productsToRender.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center text-gray-400 py-10">Tidak ada produk ditemukan untuk kategori ini.</p>`;
+                return;
+            }
+
+            grid.innerHTML = productsToRender.map(prod => `
+                <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="bg-crave-cream rounded-xl p-4 aspect-square flex items-center justify-center relative overflow-hidden mb-4">
+                            <span class="absolute top-3 left-3 bg-white text-[10px] font-bold px-2 py-0.5 rounded-full text-crave-dark shadow-sm uppercase">${prod.category}</span>
+                            <img src="${prod.image}" alt="${prod.name}" class="w-full h-full object-contain transform group-hover:scale-110 transition duration-500 drop-shadow-md">
+                        </div>
+                        <h3 class="font-display font-bold text-sm text-crave-dark uppercase tracking-tight">${prod.name}</h3>
+                        <p class="text-xs text-gray-500 mt-1 line-clamp-2">${prod.description}</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-gray-400 block uppercase font-semibold">Harga</span>
+                            <span class="font-bold text-sm text-crave-dark">${prod.priceFormatted}</span>
+                        </div>
+                        <button onclick="addToCartById(${prod.id})" class="bg-crave-dark text-white p-2.5 rounded-xl hover:bg-gray-800 transition">
+                            <i class="fas fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // HERO SLIDER / INTERACTIVE SWITCHER
+        function renderHeroThumbnails() {
+            const container = document.getElementById('thumbnail-container');
+            container.innerHTML = PRODUCTS_DATA.map((prod, index) => `
+                <div onclick="updateHeroDisplay(${index})" 
+                     id="thumb-${index}"
+                     class="glass-card p-3 rounded-2xl flex items-center space-x-3 cursor-pointer hover:shadow-lg transition-all border-2 border-transparent hover:border-crave-dark transform hover:-translate-y-1">
+                    <img src="${prod.image}" alt="${prod.name}" class="w-16 h-12 object-contain filter drop-shadow">
+                    <div class="overflow-hidden">
+                        <h4 class="font-bold text-[11px] text-crave-dark truncate uppercase">${prod.name}</h4>
+                        <p class="text-[10px] font-semibold text-gray-500">${prod.priceFormatted}</p>
+                        <div class="flex text-amber-400 text-[8px] mt-0.5">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateHeroDisplay(index) {
+            currentHeroProduct = PRODUCTS_DATA[index];
+
+            PRODUCTS_DATA.forEach((_, i) => {
+                const el = document.getElementById(`thumb-${i}`);
+                if (el) {
+                    if (i === index) {
+                        el.classList.add('border-crave-dark', 'bg-white');
+                        el.classList.remove('border-transparent');
+                    } else {
+                        el.classList.remove('border-crave-dark', 'bg-white');
+                        el.classList.add('border-transparent');
+                    }
+                }
+            });
+
+            const mainImg = document.getElementById('hero-shoe-img');
+            mainImg.style.opacity = 0;
+            mainImg.style.transform = 'scale(0.9) rotate(-15deg)';
+
+            setTimeout(() => {
+                mainImg.src = currentHeroProduct.image;
+                document.getElementById('hero-title').innerText = currentHeroProduct.name;
+                document.getElementById('hero-tagline').innerText = currentHeroProduct.tagline;
+                document.getElementById('hero-desc').innerText = currentHeroProduct.description;
+                document.getElementById('hero-price').innerText = currentHeroProduct.priceFormatted;
+                document.getElementById('bg-brand-text').innerText = currentHeroProduct.bgText;
+
+                mainImg.style.opacity = 1;
+                mainImg.style.transform = 'scale(1) rotate(-15deg)';
+            }, 200);
+        }
+
+        // SIZE SELECTION
+        function selectSize(size) {
+            selectedSize = size;
+            const buttons = document.querySelectorAll('.size-btn');
+            buttons.forEach(btn => {
+                if (parseInt(btn.innerText) === size) {
+                    btn.className = "size-btn w-10 h-10 rounded-lg border border-crave-dark bg-crave-dark text-white text-xs font-bold transition";
+                } else {
+                    btn.className = "size-btn w-10 h-10 rounded-lg border border-gray-300 text-xs font-bold hover:border-crave-dark transition";
+                }
+            });
+        }
+
+        // CART LOGIC
+        function addCurrentHeroToCart() {
+            addToCart(currentHeroProduct, selectedSize);
+        }
+
+        function addToCartById(id) {
+            const prod = PRODUCTS_DATA.find(p => p.id === id);
+            if (prod) addToCart(prod, 41);
+        }
+
+        function addToCart(product, size) {
+            const existingIndex = cart.findIndex(item => item.id === product.id && item.size === size);
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    priceFormatted: product.priceFormatted,
+                    image: product.image,
+                    size: size,
+                    qty: 1
+                });
+            }
+            updateCartUI();
+            showToast(`" ${product.name} " ditambahkan ke keranjang!`);
+        }
+
+        function updateCartUI() {
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-badge').innerText = totalQty;
+
+            const container = document.getElementById('cart-items-container');
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-gray-400">
+                        <i class="fas fa-shopping-bag text-4xl mb-3"></i>
+                        <p class="text-xs font-semibold uppercase">Keranjang Anda Masih Kosong</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map((item, index) => `
+                    <div class="py-4 flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-contain bg-crave-cream p-1 rounded-lg">
+                            <div>
+                                <h4 class="font-bold text-xs text-crave-dark uppercase">${item.name}</h4>
+                                <p class="text-[10px] text-gray-500">Size: ${item.size} | ${item.priceFormatted}</p>
+                                <div class="flex items-center space-x-2 mt-1">
+                                    <button onclick="changeQty(${index}, -1)" class="w-5 h-5 bg-gray-200 rounded text-xs font-bold">-</button>
+                                    <span class="text-xs font-bold">${item.qty}</span>
+                                    <button onclick="changeQty(${index}, 1)" class="w-5 h-5 bg-gray-200 rounded text-xs font-bold">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="removeItem(${index})" class="text-red-400 hover:text-red-600 text-xs p-1">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const formattedSubtotal = "Rp " + subtotal.toLocaleString('id-ID');
+            document.getElementById('cart-subtotal').innerText = formattedSubtotal;
+            document.getElementById('cart-total').innerText = formattedSubtotal;
+            document.getElementById('checkout-total-price').innerText = formattedSubtotal;
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        // MODALS HANDLER
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function openCheckoutModal() {
+            if (cart.length === 0) {
+                showToast("Keranjang belanja kosong!");
+                return;
+            }
+            toggleCartDrawer();
+            openModal('modal-checkout');
+        }
+
+        function switchPolicyTab(tabName) {
+            const tabs = ['shipping', 'return', 'privacy', 'payment'];
+            tabs.forEach(t => {
+                document.getElementById(`policy-${t}`).classList.remove('active');
+                const btn = document.getElementById(`tab-btn-${t}`);
+                btn.classList.remove('border-crave-dark', 'text-crave-dark');
+                btn.classList.add('border-transparent', 'text-gray-400');
+            });
+
+            document.getElementById(`policy-${tabName}`).classList.add('active');
+            const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+            activeBtn.classList.add('border-crave-dark', 'text-crave-dark');
+            activeBtn.classList.remove('border-transparent', 'text-gray-400');
+        }
+
+        // MOBILE MENU TOGGLE
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // FORM SUBMISSIONS SIMULATION
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            closeModal('modal-contact');
+            showToast("Pesan berhasil dikirim! Tim kami akan menghubungi Anda.");
+        }
+
+        function handleCheckoutSubmit(e) {
+            e.preventDefault();
+            
+            // Ambil nilai dari form checkout
+            const inputs = e.target.elements;
+            const nama = inputs[0].value;
+            const whatsapp = inputs[1].value;
+            const alamat = inputs[2].value;
+            const kurir = inputs[3].value;
+            const pembayaran = inputs[4].value;
+
+            // Rangkum item keranjang
+            let itemSummary = "";
+            let totalHarga = 0;
+            cart.forEach((item, index) => {
+                itemSummary += `%0A- ${item.name} (Size: ${item.size}) x${item.qty} : Rp ${(item.price * item.qty).toLocaleString('id-ID')}`;
+                totalHarga += (item.price * item.qty);
+            });
+
+            // Format pesan WhatsApp
+            const sellerWhatsApp = "6285832670247"; // Nomor WhatsApp Toko (085832670247)
+            const text = `Halo *CRAVE FOOTWEAR*, Saya ingin memesan produk berikut:%0A` +
+                         `---------------------------------------%0A` +
+                         `*DATA PENERIMA:*%0A` +
+                         `Nama: ${nama}%0A` +
+                         `No. WhatsApp: ${whatsapp}%0A` +
+                         `Alamat: ${alamat}%0A` +
+                         `---------------------------------------%0A` +
+                         `*DETAIL PESANAN:*` + itemSummary + `%0A` +
+                         `---------------------------------------%0A` +
+                         `*Total Pembayaran:* Rp ${totalHarga.toLocaleString('id-ID')}%0A` +
+                         `*Kurir:* ${kurir}%0A` +
+                         `*Metode Pembayaran:* ${pembayaran}%0A%0A` +
+                         `Mohon segera diproses ya kak. Terima kasih!`;
+
+            // Buka WhatsApp API
+            const waURL = `https://wa.me/${sellerWhatsApp}?text=${text}`;
+            window.open(waURL, '_blank');
+
+            // Tutup modal dan reset keranjang
+            closeModal('modal-checkout');
+            cart = [];
+            updateCartUI();
+            showToast("Pesanan dialihkan ke WhatsApp!");
+        }
+
+        // TOAST NOTIFICATION
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
